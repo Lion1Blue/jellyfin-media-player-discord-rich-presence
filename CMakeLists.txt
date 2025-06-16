@@ -78,3 +78,25 @@ add_subdirectory(src)
 include(CPackConfiguration)
 
 add_custom_target(install_app_bundle COMMAND ${CMAKE_COMMAND} -P cmake_install.cmake DEPENDS JellyfinMediaPlayer)
+
+set(CURL_ROOT ${CMAKE_SOURCE_DIR}/external/curl)
+set(CURL_INCLUDE_DIR ${CURL_ROOT}/include)
+set(CURL_LIBRARY ${CURL_ROOT}/lib/libcurl_a.lib)
+
+# We're using the static library, so define this
+add_definitions(-DCURL_STATICLIB)
+
+# Create an imported target for compatibility with find_package
+add_library(libcurl STATIC IMPORTED)
+set_target_properties(libcurl PROPERTIES
+    IMPORTED_LOCATION "${CURL_LIBRARY}"
+    INTERFACE_INCLUDE_DIRECTORIES "${CURL_INCLUDE_DIR}"
+)
+
+# Create an alias target that matches the naming convention from find_package(CURL)
+add_library(CURL::libcurl ALIAS libcurl)
+
+# Set variables for other parts of the build system
+set(CURL_FOUND TRUE CACHE BOOL "CURL Found" FORCE)
+set(CURL_INCLUDE_DIRS ${CURL_INCLUDE_DIR} CACHE PATH "CURL include directories" FORCE)
+set(CURL_LIBRARIES ${CURL_LIBRARY} CACHE FILEPATH "CURL libraries" FORCE)

@@ -3,6 +3,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMPILER_FLAGS_THIRD_PARTY}")
 
 add_subdirectory(discord)
 add_subdirectory(imgur)
+add_subdirectory(curl)
 
 if(APPLE)
   add_subdirectory(plistparser)

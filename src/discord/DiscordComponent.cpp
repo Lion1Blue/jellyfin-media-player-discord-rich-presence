@@ -81,7 +81,7 @@ void DiscordComponent::authorize(){
                             });
       });
     }
-  });
+  }); 
 }
 
 void DiscordComponent::updateActivity(State state){
@@ -113,6 +113,7 @@ void DiscordComponent::updateRichPresence(){
 void DiscordComponent::makeWatchingActivity(){
   discordpp::ActivityAssets image;
   discordpp::ActivityTimestamps timestamp;
+
   QString state;
   QString details;
   QString thumbnailUrl;

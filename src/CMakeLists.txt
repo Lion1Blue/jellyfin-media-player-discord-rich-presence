@@ -170,6 +170,7 @@ target_link_libraries(${MAIN_TARGET}
   shared
   discord
   imgur
+  curl
   ${MPV_LIBRARY}
   ${OPENGL_LIBS}
   ${QT5_LIBRARIES}

@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <curl/curl.h>
+#include <curl.h>
 #include <QDebug>
 
 class Imgur {
